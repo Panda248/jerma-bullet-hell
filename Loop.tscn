@@ -1,0 +1,312 @@
+[gd_scene load_steps=38 format=3 uid="uid://nws8fwp6ro1b"]
+
+[ext_resource type="Script" uid="uid://du27ebcpdng3o" path="res://player.gd" id="1_8ttwr"]
+[ext_resource type="VideoStream" uid="uid://drg544y6cbeyc" path="res://assets/AdobeStock_330743078_Video_HD_Preview.mp4" id="1_s74jq"]
+[ext_resource type="VideoStream" uid="uid://dt8sboikukihp" path="res://assets/AdobeStock_1364655418_Video_4K_Preview.mp4" id="2_cqamg"]
+[ext_resource type="SpriteFrames" uid="uid://bvfoh7c0mao34" path="res://jerma.tres" id="2_jydfl"]
+[ext_resource type="Script" uid="uid://1k3gh42pmixh" path="res://animated_sprite_2d.gd" id="3_1bcbh"]
+[ext_resource type="Script" uid="uid://ctvwmv8lyr5gs" path="res://boss_stat.gd" id="3_f1nfu"]
+[ext_resource type="Script" uid="uid://bphpuudr5kfyo" path="res://bulletmanager.gd" id="3_mpmnq"]
+[ext_resource type="Script" uid="uid://be0ohnek0ru6e" path="res://bullet_emitter.gd" id="4_y27y2"]
+[ext_resource type="PackedScene" uid="uid://qk52rfblq25r" path="res://bullet.tscn" id="5_gtrca"]
+[ext_resource type="Script" uid="uid://n65lrgigj1j6" path="res://boss.gd" id="5_qg13g"]
+[ext_resource type="Texture2D" uid="uid://v4ffspinio76" path="res://assets/sprites/AdobeStock_552344587_Preview.png" id="5_smm2h"]
+[ext_resource type="Script" uid="uid://dmtgcxsq06mi2" path="res://HitboxIndicator.gd" id="6_7yw7y"]
+[ext_resource type="Texture2D" uid="uid://ckrykfa4auspk" path="res://assets/sprites/spider.jpg" id="6_isj50"]
+[ext_resource type="Texture2D" uid="uid://cy0tb2dqv5tcy" path="res://assets/sprites/control.png" id="11_gigkh"]
+[ext_resource type="Texture2D" uid="uid://bkh7rudyonl51" path="res://assets/sprites/AdobeStock_134446208_Preview.jpeg" id="11_i8kvd"]
+[ext_resource type="Script" uid="uid://bqc8xx1i8me0m" path="res://bomb_emitter.gd" id="11_o31tf"]
+[ext_resource type="Script" uid="uid://xnj2hk5y1trc" path="res://livescontainer.gd" id="11_uwhry"]
+[ext_resource type="Script" uid="uid://g7xr34suk4x4" path="res://bombcontainer.gd" id="12_mpmnq"]
+[ext_resource type="Script" uid="uid://h0otn4r1uf5c" path="res://tv.gd" id="17_7kd3x"]
+[ext_resource type="VideoStream" uid="uid://dt40yip45ghmk" path="res://assets/tv/AdobeStock_173845283_Video_4K_Preview.mp4" id="18_xrwt8"]
+[ext_resource type="VideoStream" uid="uid://c02bj7qf5jgwl" path="res://assets/tv/AdobeStock_194795423_Video_HD_Preview.mp4" id="19_f1nfu"]
+[ext_resource type="VideoStream" uid="uid://bdigdvfhjnvu5" path="res://assets/tv/AdobeStock_228910488_Video_4K_Preview.mp4" id="20_qg13g"]
+[ext_resource type="VideoStream" uid="uid://kvgkrl46rkfr" path="res://assets/tv/AdobeStock_244139998_Video_4K_Preview.mp4" id="21_6wvcs"]
+[ext_resource type="VideoStream" uid="uid://t4fbhfjsaqdb" path="res://assets/tv/AdobeStock_412919935_Video_4K_Preview.mp4" id="22_xpsk4"]
+[ext_resource type="VideoStream" uid="uid://cbtvxg2nrn185" path="res://assets/tv/AdobeStock_506375814_Video_4K_Preview.mp4" id="23_50vrd"]
+[ext_resource type="VideoStream" uid="uid://dgcmkhxaoyt3w" path="res://assets/tv/AdobeStock_544451978_Video_4K_Preview.mp4" id="24_bony5"]
+[ext_resource type="VideoStream" uid="uid://cxslgsd7yd58" path="res://assets/tv/AdobeStock_1205569964_Video_4K_Preview.mp4" id="25_cyglf"]
+[ext_resource type="VideoStream" uid="uid://cwyhl7hq4s70o" path="res://assets/tv/AdobeStock_1260206808_Video_4K_Preview.mp4" id="26_xp1hu"]
+[ext_resource type="VideoStream" uid="uid://b346p7u8nblap" path="res://assets/tv/AdobeStock_1364655418_Video_4K_Preview.mp4" id="27_04unw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gtrca"]
+radius = 150.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y27y2"]
+radius = 150.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7yw7y"]
+radius = 22.0
+height = 94.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bcbh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_smm2h"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7yw7y"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cqamg"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gigkh"]
+
+[node name="Scene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.55
+anchor_bottom = 1.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stream = ExtResource("1_s74jq")
+autoplay = true
+loop = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.372494, 0.344052, 0.216515, 0.733333)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="VideoStreamPlayer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+stream = ExtResource("2_cqamg")
+autoplay = true
+expand = true
+loop = true
+
+[node name="GameControl" type="Control" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BossStat" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/GameControl" node_paths=PackedStringArray("enemy")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+grow_horizontal = 2
+size_flags_vertical = 0
+script = ExtResource("3_f1nfu")
+enemy = NodePath("../Game/Boss")
+
+[node name="Enemy Spider" type="Label" parent="CanvasLayer/HBoxContainer/GameControl/BossStat"]
+layout_mode = 2
+text = "Giant Enemy Spider"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HBoxContainer/GameControl/BossStat"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[node name="Game" type="Node2D" parent="CanvasLayer/HBoxContainer/GameControl"]
+script = ExtResource("3_mpmnq")
+
+[node name="Boss" type="AnimatableBody2D" parent="CanvasLayer/HBoxContainer/GameControl/Game"]
+position = Vector2(379, 211)
+script = ExtResource("5_qg13g")
+
+[node name="Spider" type="Sprite2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/Boss"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_isj50")
+
+[node name="Hitbox" type="Area2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/Boss"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/Boss/Hitbox"]
+shape = SubResource("CircleShape2D_gtrca")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/Boss"]
+shape = SubResource("CircleShape2D_y27y2")
+
+[node name="Player" type="AnimatableBody2D" parent="CanvasLayer/HBoxContainer/GameControl/Game" node_paths=PackedStringArray("hitbox_indicator")]
+position = Vector2(389, 655)
+sync_to_physics = false
+script = ExtResource("1_8ttwr")
+speed = 10.0
+slow_speed = 5.0
+hitbox_indicator = NodePath("hitbox/AdobeStock552344587Preview")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/Player"]
+position = Vector2(2, 1)
+shape = SubResource("CapsuleShape2D_7yw7y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/Player"]
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("2_jydfl")
+animation = &"idle"
+autoplay = "idle"
+script = ExtResource("3_1bcbh")
+
+[node name="hitbox" type="Area2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/Player"]
+position = Vector2(3, -13)
+collision_layer = 4
+collision_mask = 4
+
+[node name="AdobeStock552344587Preview" type="Sprite2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/Player/hitbox"]
+modulate = Color(5, 3, 5, 1)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("5_smm2h")
+script = ExtResource("6_7yw7y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/Player/hitbox"]
+shape = SubResource("CircleShape2D_1bcbh")
+
+[node name="BulletEmitter" type="Node2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/Player"]
+position = Vector2(2, -50)
+script = ExtResource("4_y27y2")
+bullet = ExtResource("5_gtrca")
+
+[node name="Timer" type="Timer" parent="CanvasLayer/HBoxContainer/GameControl/Game/Player/BulletEmitter"]
+process_callback = 0
+wait_time = 0.1
+
+[node name="BombEmitter" type="Node2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/Player"]
+script = ExtResource("11_o31tf")
+
+[node name="Cooldown" type="Timer" parent="CanvasLayer/HBoxContainer/GameControl/Game/Player/BombEmitter"]
+one_shot = true
+
+[node name="walls" type="Node2D" parent="CanvasLayer/HBoxContainer/GameControl/Game"]
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/walls"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/walls/StaticBody2D4"]
+position = Vector2(387, -1)
+shape = SubResource("WorldBoundaryShape2D_smm2h")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/walls"]
+position = Vector2(783, 554)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/walls/StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_7yw7y")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/walls"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/walls/StaticBody2D"]
+position = Vector2(-5, 450)
+shape = SubResource("WorldBoundaryShape2D_cqamg")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/walls"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HBoxContainer/GameControl/Game/walls/StaticBody2D3"]
+position = Vector2(393, 902)
+shape = SubResource("WorldBoundaryShape2D_gigkh")
+
+[node name="Stats" type="VideoStreamPlayer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stream = ExtResource("2_cqamg")
+autoplay = true
+expand = true
+loop = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lives" type="Label" parent="CanvasLayer/HBoxContainer/Stats/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Lives"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/Stats/VBoxContainer/Lives"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.3
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_uwhry")
+
+[node name="Life1" type="TextureRect" parent="CanvasLayer/HBoxContainer/Stats/VBoxContainer/Lives/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_smm2h")
+expand_mode = 3
+
+[node name="Bombs" type="Label" parent="CanvasLayer/HBoxContainer/Stats/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Bombs"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/Stats/VBoxContainer/Bombs"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.3
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_mpmnq")
+
+[node name="Bomb1" type="TextureRect" parent="CanvasLayer/HBoxContainer/Stats/VBoxContainer/Bombs/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_i8kvd")
+expand_mode = 3
+
+[node name="Controls" type="TextureRect" parent="CanvasLayer/HBoxContainer/Stats/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+texture = ExtResource("11_gigkh")
+
+[node name="Now playing" type="Button" parent="CanvasLayer/HBoxContainer/Stats/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+text = "Pause Cable Television"
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer/HBoxContainer/Stats/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+stream = ExtResource("18_xrwt8")
+autoplay = true
+expand = true
+script = ExtResource("17_7kd3x")
+videos = Array[VideoStream]([ExtResource("18_xrwt8"), ExtResource("19_f1nfu"), ExtResource("20_qg13g"), ExtResource("21_6wvcs"), ExtResource("22_xpsk4"), ExtResource("23_50vrd"), ExtResource("24_bony5"), ExtResource("25_cyglf"), ExtResource("26_xp1hu"), ExtResource("27_04unw")])
+
+[connection signal="destroy_bullet" from="CanvasLayer/HBoxContainer/GameControl/Game/Boss" to="CanvasLayer/HBoxContainer/GameControl/Game" method="_on_destroy_bullet"]
+[connection signal="body_entered" from="CanvasLayer/HBoxContainer/GameControl/Game/Boss/Hitbox" to="CanvasLayer/HBoxContainer/GameControl/Game/Boss" method="_on_hitbox_body_entered"]
+[connection signal="request_special" from="CanvasLayer/HBoxContainer/GameControl/Game/Player" to="CanvasLayer/HBoxContainer/GameControl/Game/Player/BombEmitter" method="_on_player_request_special"]
+[connection signal="shoot" from="CanvasLayer/HBoxContainer/GameControl/Game/Player" to="CanvasLayer/HBoxContainer/GameControl/Game/Player/BulletEmitter" method="_on_player_shoot"]
+[connection signal="animation_finished" from="CanvasLayer/HBoxContainer/GameControl/Game/Player/AnimatedSprite2D" to="CanvasLayer/HBoxContainer/GameControl/Game/Player/AnimatedSprite2D" method="_on_animation_finished"]
+[connection signal="body_entered" from="CanvasLayer/HBoxContainer/GameControl/Game/Player/hitbox" to="CanvasLayer/HBoxContainer/GameControl/Game/Player" method="_on_hitbox_body_entered"]
+[connection signal="add_bullet" from="CanvasLayer/HBoxContainer/GameControl/Game/Player/BulletEmitter" to="CanvasLayer/HBoxContainer/GameControl/Game" method="_on_add_bullet"]
+[connection signal="timeout" from="CanvasLayer/HBoxContainer/GameControl/Game/Player/BulletEmitter/Timer" to="CanvasLayer/HBoxContainer/GameControl/Game/Player/BulletEmitter" method="_on_timer_timeout"]
+[connection signal="trigger_special" from="CanvasLayer/HBoxContainer/GameControl/Game/Player/BombEmitter" to="CanvasLayer/HBoxContainer/GameControl/Game/Player/AnimatedSprite2D" method="_on_bomb_emitter_trigger_special"]
+[connection signal="timeout" from="CanvasLayer/HBoxContainer/GameControl/Game/Player/BombEmitter/Cooldown" to="CanvasLayer/HBoxContainer/GameControl/Game/Player/BombEmitter" method="_on_timer_timeout"]
+[connection signal="toggled" from="CanvasLayer/HBoxContainer/Stats/VBoxContainer/Now playing" to="CanvasLayer/HBoxContainer/Stats/VBoxContainer/VideoStreamPlayer" method="_on_now_playing_toggled"]
+[connection signal="finished" from="CanvasLayer/HBoxContainer/Stats/VBoxContainer/VideoStreamPlayer" to="CanvasLayer/HBoxContainer/Stats/VBoxContainer/VideoStreamPlayer" method="_on_finished"]
