@@ -11,7 +11,8 @@ func _ready() -> void:
 
 func _on_player_shoot() -> void:
 	if(can_shoot) :
-		var new_bullet : Node2D = bullet.instantiate()
+		var new_bullet : Bullet = bullet.instantiate()
+		new_bullet.damping = 1
 		emit_signal("add_bullet", new_bullet, global_position)
 		can_shoot = false
 		timer.start()

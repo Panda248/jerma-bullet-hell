@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://de2aw02owb7f4"]
+
+[ext_resource type="Script" uid="uid://0jxwxgeydqnu" path="res://familiar.gd" id="1_armd4"]
+[ext_resource type="Texture2D" uid="uid://38q5ovf0ikp7" path="res://assets/sprites/AdobeStock_672900126_Preview.png" id="2_784jr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4nx33"]
+radius = 38.71
+
+[sub_resource type="Animation" id="Animation_4nx33"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.13, 0.13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_784jr"]
+resource_name = "destroy"
+length = 0.333337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.13, 0.13), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4nx33"]
+_data = {
+&"RESET": SubResource("Animation_4nx33"),
+&"destroy": SubResource("Animation_784jr")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_784jr"]
+radius = 5.0
+
+[node name="Familiar" type="AnimatableBody2D"]
+scale = Vector2(0.7, 0.7)
+collision_layer = 4
+collision_mask = 0
+sync_to_physics = false
+script = ExtResource("1_armd4")
+max_speed = 5
+min_speed = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4nx33")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("2_784jr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_4nx33")
+}
+
+[node name="BoundsChecker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundsChecker"]
+shape = SubResource("CircleShape2D_784jr")
+
+[node name="Homing Timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+autostart = true
+
+[node name="Shooting Timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+autostart = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="body_entered" from="BoundsChecker" to="." method="_on_bounds_checker_body_entered"]
+[connection signal="timeout" from="Homing Timer" to="." method="_on_homing_timer_timeout"]
+[connection signal="timeout" from="Shooting Timer" to="." method="_on_shooting_timer_timeout"]

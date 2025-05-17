@@ -1,42 +1,42 @@
-[gd_scene load_steps=8 format=3 uid="uid://qk52rfblq25r"]
+[gd_scene load_steps=8 format=3 uid="uid://u6qkmdgcgd1q"]
 
-[ext_resource type="Texture2D" uid="uid://whowihjyxyi3" path="res://assets/sprites/jerma_bullet.png" id="1_v7oki"]
-[ext_resource type="Script" uid="uid://d28f04tnokk6r" path="res://bullet.gd" id="2_v8qja"]
+[ext_resource type="Script" uid="uid://dllgydy00hhgs" path="res://enemy_bullet.gd" id="1_gl7bs"]
+[ext_resource type="Texture2D" uid="uid://dcqdt7trgc45o" path="res://assets/sprites/AdobeStock_906355815_Preview.png" id="2_mgp66"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rtl8c"]
-radius = 38.71
+[sub_resource type="CircleShape2D" id="CircleShape2D_7smgm"]
+radius = 50.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v8qja"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gl7bs"]
 radius = 5.0
 
-[sub_resource type="Animation" id="Animation_t4vbm"]
+[sub_resource type="Animation" id="Animation_mgp66"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/path = NodePath("Sprite2D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(0.13, 0.13)]
 }
 
-[sub_resource type="Animation" id="Animation_v8qja"]
+[sub_resource type="Animation" id="Animation_gl7bs"]
 resource_name = "destroy"
 length = 0.333337
 tracks/0/type = "value"
@@ -49,7 +49,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(2, 2)]
+"values": [Vector2(0.13, 0.13), Vector2(0.26, 0.26)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -64,42 +64,50 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2b2rl"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7smgm"]
 _data = {
-&"RESET": SubResource("Animation_t4vbm"),
-&"destroy": SubResource("Animation_v8qja")
+&"RESET": SubResource("Animation_mgp66"),
+&"destroy": SubResource("Animation_gl7bs")
 }
 
 [node name="Bullet" type="AnimatableBody2D"]
 scale = Vector2(0.5, 0.5)
-collision_layer = 2
+collision_layer = 4
 collision_mask = 0
 sync_to_physics = false
-script = ExtResource("2_v8qja")
+script = ExtResource("1_gl7bs")
+max_speed = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_rtl8c")
+shape = SubResource("CircleShape2D_7smgm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(5, 5, 5, 1)
-texture = ExtResource("1_v7oki")
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("2_mgp66")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
 scale = Vector2(0.9, 0.9)
-texture = ExtResource("1_v7oki")
+texture = ExtResource("2_mgp66")
 
-[node name="BoundsChecker" type="Area2D" parent="."]
+[node name="Boundschecker" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundsChecker"]
-shape = SubResource("CircleShape2D_v8qja")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundschecker"]
+shape = SubResource("CircleShape2D_gl7bs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_2b2rl")
+&"": SubResource("AnimationLibrary_7smgm")
 }
 
-[connection signal="body_entered" from="BoundsChecker" to="." method="_on_bounds_checker_body_entered"]
+[node name="Homing Timer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Boundschecker" to="." method="_on_bounds_checker_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="Homing Timer" to="." method="_on_homing_timer_timeout"]
