@@ -1,4 +1,11 @@
-[gd_scene format=3 uid="uid://dtmbkmh05olrg"]
+[gd_scene load_steps=7 format=3 uid="uid://dtmbkmh05olrg"]
+
+[ext_resource type="Texture2D" uid="uid://d4bqf7ec36s1v" path="res://assets/1000_F_333817488_Xam2ojFWsO9AEUGHQ45THtVOtdeeEWzc.jpg" id="1_c0dwi"]
+[ext_resource type="Script" uid="uid://byr2s55llcebh" path="res://title.gd" id="1_quvj1"]
+[ext_resource type="Texture2D" uid="uid://66khpsjq13dh" path="res://assets/1000_F_84372092_EMRoj72i7a6fuYYHLmjmcLoQFFXoCXrG.jpg" id="2_ax32a"]
+[ext_resource type="Texture2D" uid="uid://c8yg71ne2ws14" path="res://assets/1000_F_338886178_IzcHQQfT5ksC5uidSY0fPZ0dkS2Hd5Hm.jpg" id="4_e4n62"]
+[ext_resource type="AudioStream" uid="uid://blereybkbyjnu" path="res://assets/Emotional-Cello-and-Piano-(Documentary--Title)_AdobeStock_1082063776_preview.wav" id="5_rg4ux"]
+[ext_resource type="Texture2D" uid="uid://cfvcjvksrpdjx" path="res://assets/1000_F_227435032_tnpmS5rB96ZIL1wERKXLsP9oULNjdjuM.jpg" id="6_yytgh"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -7,3 +14,66 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_quvj1")
+
+[node name="Emotional-cello-and-piano-(documentary--title)AdobeStock1082063776Preview" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(676, 426)
+stream = ExtResource("5_rg4ux")
+autoplay = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_c0dwi")
+expand_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+theme_override_font_sizes/font_size = 100
+text = "Stock Boss Battle"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("2_ax32a")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("6_yytgh")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+icon = ExtResource("4_e4n62")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

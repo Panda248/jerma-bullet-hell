@@ -31,12 +31,12 @@
 [ext_resource type="Texture2D" uid="uid://hc767fb8dvli" path="res://assets/sprites/jerma_special6.png" id="18_eybto"]
 [ext_resource type="Texture2D" uid="uid://d245pdjpinqyf" path="res://assets/sprites/jerma_special7.png" id="19_b3ryu"]
 [ext_resource type="Texture2D" uid="uid://bkh7l0uxhnbf3" path="res://assets/sprites/jerma_run3.png" id="19_eybto"]
-[ext_resource type="Texture2D" uid="uid://0w5prt5eupst" path="res://assets/sprites/jerma_shoot.png" id="20_b3ryu"]
 [ext_resource type="Texture2D" uid="uid://bf5nyhre7nhkc" path="res://assets/sprites/jerma_special8.png" id="20_j575u"]
 [ext_resource type="Texture2D" uid="uid://bry13tfmt71nf" path="res://assets/sprites/jerma_shoot1.png" id="21_j575u"]
 [ext_resource type="Texture2D" uid="uid://ct4o130iffibx" path="res://assets/sprites/jerma_special9.png" id="21_risay"]
 [ext_resource type="Texture2D" uid="uid://cb7087p6asia8" path="res://assets/sprites/jerma_special10.png" id="22_6hic3"]
 [ext_resource type="Texture2D" uid="uid://0s1x2y44qw52" path="res://assets/sprites/jerma_special11.png" id="23_srixd"]
+[ext_resource type="Texture2D" uid="uid://bbveumkcf3432" path="res://assets/sprites/jerma_shoot0.png" id="24_eybto"]
 [ext_resource type="Texture2D" uid="uid://bgcbog048fgop" path="res://assets/sprites/jerma_special12.png" id="24_w5n8l"]
 [ext_resource type="Texture2D" uid="uid://sefe0hc86hm8" path="res://assets/sprites/jerma_special13.png" id="25_dc60w"]
 [ext_resource type="Texture2D" uid="uid://c7m63msn7exgk" path="res://assets/sprites/jerma_spawn0.png" id="26_eybto"]
@@ -131,7 +131,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("20_b3ryu")
+"texture": ExtResource("24_eybto")
 }, {
 "duration": 1.0,
 "texture": ExtResource("21_j575u")

@@ -4,6 +4,7 @@ extends Node2D
 @export var bullet2 : PackedScene
 
 var laser = true
+var dir = 1
 
 signal add_bullet(bullet : Variant, position : Vector2)
 
@@ -11,16 +12,21 @@ func _on_timer_timeout() -> void:
 	if(laser):
 		var bulletInstance : Laser = bullet.instantiate()
 		bulletInstance.direction = Vector2.RIGHT.rotated(PI/4)
+		bulletInstance.max_speed *= dir
 		emit_signal("add_bullet", bulletInstance, global_position)
 		bulletInstance = bullet.instantiate()
 		bulletInstance.direction = Vector2.UP.rotated(PI/4)
+		bulletInstance.max_speed *= dir
 		emit_signal("add_bullet", bulletInstance, global_position)
 		bulletInstance = bullet.instantiate()
 		bulletInstance.direction = Vector2.LEFT.rotated(PI/4)
+		bulletInstance.max_speed *= dir
 		emit_signal("add_bullet", bulletInstance, global_position)
 		bulletInstance = bullet.instantiate()
 		bulletInstance.direction = Vector2.DOWN.rotated(PI/4)
+		bulletInstance.max_speed *= dir
 		emit_signal("add_bullet", bulletInstance, global_position)
+		dir *= -1
 	else:
 		for i in 25:
 			var bulletInstance : HomingBullet = bullet2.instantiate()

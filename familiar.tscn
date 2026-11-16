@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://38q5ovf0ikp7" path="res://assets/sprites/AdobeStock_672900126_Preview.png" id="2_784jr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4nx33"]
-radius = 38.71
+radius = 32.8571
 
 [sub_resource type="Animation" id="Animation_4nx33"]
 length = 0.001

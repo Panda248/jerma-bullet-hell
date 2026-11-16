@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Jerma Bullet Hell"
-run/main_scene="uid://nws8fwp6ro1b"
+run/main_scene="uid://dtmbkmh05olrg"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=200
 config/icon="res://icon.svg"
@@ -58,3 +58,4 @@ Slow={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

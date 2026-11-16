@@ -11,6 +11,6 @@ func _ready() -> void:
 		add_child(live_icon.duplicate())
 
 func _physics_process(delta: float) -> void:
-	if(lives != PlayerStats.lives):
+	if(lives != PlayerStats.lives and lives > 0):
 		get_child(lives - 1).hide()
 		lives = PlayerStats.lives

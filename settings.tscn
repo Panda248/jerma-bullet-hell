@@ -1,0 +1,104 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqin0047pppxe"]
+
+[ext_resource type="Script" uid="uid://q8n08v8ayp41" path="res://settings.gd" id="1_nkug2"]
+[ext_resource type="Texture2D" uid="uid://d4bqf7ec36s1v" path="res://assets/1000_F_333817488_Xam2ojFWsO9AEUGHQ45THtVOtdeeEWzc.jpg" id="1_x2hje"]
+[ext_resource type="Texture2D" uid="uid://c8yg71ne2ws14" path="res://assets/1000_F_338886178_IzcHQQfT5ksC5uidSY0fPZ0dkS2Hd5Hm.jpg" id="3_3ykye"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nkug2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x2hje")
+expand_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Life" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Lives"
+horizontal_alignment = 1
+
+[node name="Lifeslider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+min_value = 1.0
+max_value = 5.0
+value = 3.0
+rounded = true
+tick_count = 5
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="VBoxContainer/Lifeslider"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -69.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "1   	                   2   	                   3   	                   4   	                   5"
+
+[node name="Bombs" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Bombs"
+horizontal_alignment = 1
+
+[node name="Bombslider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+max_value = 5.0
+value = 2.0
+rounded = true
+tick_count = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/Bombslider"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "0   	              1   	              2   	              3   	              4    	              5"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("3_3ykye")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="value_changed" from="VBoxContainer/Lifeslider" to="." method="_on_lifeslider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Bombslider" to="." method="_on_bombslider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

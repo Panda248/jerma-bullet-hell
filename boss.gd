@@ -30,13 +30,16 @@ func _ready() -> void:
 	stage3 = $Stage3
 	stage4 = $ScaryStage
 	current_attack = stage1
-	movetargets = $MoveTargets
+	movetargets = get_parent().find_child("MoveTargets")
 	target_position = movetargets.get_child(0).global_position
+	$MoveTimer.start()
 
 func _physics_process(delta: float) -> void:
-	if(position.distance_to(target_position) > 0.01):
-		var direction = position.direction_to(target_position)
-		move_and_collide( direction * position.distance_to(target_position) * damp)
+	if(global_position.distance_to(target_position) > 0.01):
+		var direction = global_position.direction_to(target_position)
+		move_and_collide( direction * global_position.distance_to(target_position) * damp)
+	else:
+		global_position = target_position
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Bullet:
@@ -47,10 +50,13 @@ func take_damage(damage : int):
 	health -= damage
 	if(health <= 0):
 		die()
-	#elif (health < stage4_threshold and current_attack == stage3):
-		#stage4.process_mode = PROCESS_MODE_INHERIT
-		#stage3.process_mode = PROCESS_MODE_DISABLED
-		#current_attack = stage4
+	elif (health < stage4_threshold and current_attack == stage3):
+		stage4.process_mode = PROCESS_MODE_INHERIT
+		stage3.process_mode = PROCESS_MODE_DISABLED
+		current_attack = stage4
+		stage4.find_child("AnimationPlayer").play("atk")
+		target_position = movetargets.get_child(0).global_position
+		$MoveTimer.stop()
 	elif (health < stage3_threshold and current_attack == stage2) :
 		#print("stage3ing")
 		stage3.process_mode = PROCESS_MODE_INHERIT
